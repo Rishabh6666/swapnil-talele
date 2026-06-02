@@ -1,0 +1,6 @@
+{
+  "name": "Financial Advisor | Swapnil Talele",
+  "description": "AMFI Registered Mutual Fund Distributor portfolio and financial assessment workspace for Swapnil Dhanraj Talele (ARN-358795).",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
