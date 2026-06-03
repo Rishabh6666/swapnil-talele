@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Phone, Menu, X, ArrowRight } from 'lucide-react';
+import { Phone, Menu, X, ArrowRight, Sun, Moon } from 'lucide-react';
 import { BUSINESS_INFO } from '../data';
 
-export default function Header() {
+interface HeaderProps {
+  theme: 'dark' | 'light';
+  toggleTheme: () => void;
+}
+
+export default function Header({ theme, toggleTheme }: HeaderProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -98,13 +103,26 @@ export default function Header() {
 
           {/* Call / Action Desk Buttons */}
           <div className="hidden lg:flex items-center gap-3 xl:gap-4 shrink-0">
+            {/* Theme Toggle Button */}
+            <button
+              onClick={toggleTheme}
+              className="p-2 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 text-slate-300 hover:text-white transition-all cursor-pointer flex items-center justify-center mr-1 focus:outline-none"
+              title={theme === 'light' ? 'Switch to Dark Mode' : 'Switch to Light Mode'}
+              id="theme-toggle-desktop"
+            >
+              {theme === 'light' ? (
+                <Moon className="w-4 h-4 text-emerald-500" />
+              ) : (
+                <Sun className="w-4 h-4 text-amber-400" />
+              )}
+            </button>
             <a
               href={`tel:${BUSINESS_INFO.phone}`}
-              className="hidden xl:flex items-center gap-2 text-slate-350 hover:text-emerald-400 font-medium text-xs xl:text-sm transition-colors"
+              className="p-2 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 text-slate-300 hover:text-white transition-all cursor-pointer flex items-center justify-center focus:outline-none"
+              title={`Call: ${BUSINESS_INFO.phone}`}
               id="cta-nav-call"
             >
-              <Phone className="w-3.5 h-3.5 text-emerald-400" />
-              <span className="font-mono text-white">+91 98336 74743</span>
+              <Phone className="w-4 h-4 text-emerald-400" />
             </a>
             <a
               href="#contact"
@@ -118,7 +136,19 @@ export default function Header() {
           </div>
 
           {/* Hamburger Menu button */}
-          <div className="lg:hidden">
+          <div className="lg:hidden flex items-center gap-2">
+            <button
+              onClick={toggleTheme}
+              className="p-2 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 text-slate-300 hover:text-white transition-all cursor-pointer flex items-center justify-center focus:outline-none"
+              title={theme === 'light' ? 'Switch to Dark Mode' : 'Switch to Light Mode'}
+              id="theme-toggle-mobile"
+            >
+              {theme === 'light' ? (
+                <Moon className="w-4 h-4 text-emerald-500" />
+              ) : (
+                <Sun className="w-4 h-4 text-amber-400" />
+              )}
+            </button>
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="text-slate-300 hover:text-white focus:outline-none p-1.5 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10"

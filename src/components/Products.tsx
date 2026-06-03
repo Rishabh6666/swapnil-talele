@@ -118,6 +118,7 @@ export default function Products() {
             {/* Modal Body Container */}
             <div className="flex min-h-screen items-center justify-center p-4 relative z-10">
               <motion.div
+                id="product-detail-modal-card"
                 initial={{ opacity: 0, scale: 0.95, y: 15 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.95, y: 15 }}

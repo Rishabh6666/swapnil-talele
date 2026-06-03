@@ -74,3 +74,286 @@ body {
   outline: none;
 }
 
+/* ==========================================================
+   LIGHT MODE OVERRIDES
+   Highly tailored to maintain visual elegance and contrast
+   ========================================================== */
+
+/* Root and Base */
+html.light, body.light {
+  background-color: #f8fafc !important;
+  color: #1e293b !important;
+}
+
+/* Base text color overrides for headings and high contrast elements in Light Mode */
+.light h1, 
+.light h2, 
+.light h3, 
+.light h4, 
+.light h5, 
+.light h6 {
+  color: #0f172a !important;
+}
+
+/* Explicit text contrast overrides */
+.light .text-white:not(.preserve-dark *):not(.bg-emerald-500 *):not(.bg-emerald-600 *):not(.bg-blue-600 *):not(.bg-blue-700 *):not(#cta-nav-consultation *):not(.bg-gray-950 *):not(#submit-register-btn *):not(#submit-whatsapp-direct-btn *):not(#floating-whatsapp-widget *) {
+  color: #0f172a !important;
+}
+
+.light .text-slate-100:not(.preserve-dark *),
+.light .text-slate-50:not(.preserve-dark *) {
+  color: #0f172a !important;
+}
+
+.light .text-slate-200:not(.preserve-dark *) {
+  color: #1e293b !important; /* slate-800 */
+}
+
+.light .text-slate-300:not(.preserve-dark *):not(.bg-emerald-500 *):not(.bg-emerald-600 *):not(.bg-blue-600 *) {
+  color: #334155 !important; /* slate-700 */
+}
+
+.light .text-slate-350:not(.preserve-dark *) {
+  color: #334155 !important; /* slate-700 */
+}
+
+.light .text-slate-400:not(.preserve-dark *):not(.bg-emerald-500 *):not(.bg-[#030712] *):not(#app-footer *) {
+  color: #475569 !important; /* slate-600 */
+}
+
+.light .text-slate-500:not(.preserve-dark *) {
+  color: #64748b !important; /* slate-500 */
+}
+
+/* Glass panel, cards layout overrides */
+.light .glass-panel,
+.light .glass-card,
+.light div.bg-white\/5 {
+  background-color: rgba(255, 255, 255, 0.75) !important;
+  border-color: rgba(203, 213, 225, 0.6) !important;
+  box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.05), 0 8px 10px -6px rgba(15, 23, 42, 0.05) !important;
+}
+
+.light .glass-card:hover {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  border-color: rgba(16, 185, 129, 0.4) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 20px 25px -5px rgba(16, 185, 129, 0.06) !important;
+}
+
+.light .glass-card-blue:hover {
+  border-color: rgba(59, 130, 246, 0.4) !important;
+  box-shadow: 0 20px 25px -5px rgba(59, 130, 246, 0.06) !important;
+}
+
+/* Border visibility fixes for light mode */
+.light div[class*="border-white/"] {
+  border-color: rgba(15, 23, 42, 0.08) !important;
+}
+
+.light .border-white\/10 {
+  border-color: rgba(15, 23, 42, 0.1) !important;
+}
+
+.light .border-white\/5 {
+  border-color: rgba(15, 23, 42, 0.05) !important;
+}
+
+/* Inputs & Forms overrides */
+.light .glass-input,
+.light input,
+.light select,
+.light textarea {
+  background-color: #ffffff !important;
+  border-color: #cbd5e1 !important; /* slate-300 */
+  color: #0f172a !important;
+}
+
+.light select option {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+}
+
+.light .glass-input:focus,
+.light input:focus,
+.light select:focus,
+.light textarea:focus {
+  background-color: #ffffff !important;
+  border-color: rgba(16, 185, 129, 0.5) !important;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1) !important;
+}
+
+.light input::placeholder,
+.light textarea::placeholder {
+  color: #94a3b8 !important; /* slate-400 */
+}
+
+/* Header navigation bar in light mode */
+.light #app-header {
+  background-color: rgba(255, 255, 255, 0.85) !important;
+  border-bottom-color: rgba(226, 232, 240, 0.9) !important;
+  box-shadow: 0 4px 6px -1px rgba(15, 23, 42, 0.03), 0 2px 4px -1px rgba(15, 23, 42, 0.02) !important;
+}
+
+.light #app-header a {
+  color: #334155 !important;
+}
+
+.light #app-header a:hover {
+  color: #10b981 !important;
+}
+
+.light #mobile-drawer {
+  background-color: rgba(255, 255, 255, 0.98) !important;
+  border-top-color: rgba(226, 232, 240, 0.9) !important;
+}
+
+.light #mobile-drawer a {
+  color: #334155 !important;
+  border-bottom-color: rgba(241, 245, 249, 0.9) !important;
+}
+
+.light #mobile-drawer a:hover {
+  color: #10b981 !important;
+}
+
+/* Growth Visualizer Panel overrides */
+.light #calculator-panel,
+.light #calculator-result-panel {
+  background-color: rgba(255, 255, 255, 0.85) !important;
+  border-color: rgba(203, 213, 225, 0.6) !important;
+}
+
+.light #growth-visualizer .bg-black\/25 {
+  background-color: #f1f5f9 !important;
+  border-color: #cbd5e1 !important;
+}
+
+.light #growth-visualizer text {
+  fill: #475569 !important;
+}
+
+.light #growth-visualizer line {
+  stroke: rgba(15, 23, 42, 0.12) !important;
+}
+
+/* Contact container overrides */
+.light #contact-form-container {
+  background-color: rgba(255, 255, 255, 0.8) !important;
+  border-color: rgba(203, 213, 225, 0.6) !important;
+}
+
+/* Keeping full dark theme on the footer for maximum premium look and regulatory compliance readability */
+.light #app-footer {
+  background-color: #030712 !important;
+  color: #94a3b8 !important;
+}
+
+.light #app-footer h3,
+.light #app-footer h4,
+.light #app-footer strong {
+  color: #ffffff !important;
+}
+
+.light #app-footer a {
+  color: #cbd5e1 !important;
+}
+
+.light #app-footer a:hover {
+  color: #34d399 !important;
+}
+
+/* Modals overlays (Product details, Legal documents) */
+.light #legal-document-modal,
+.light #product-detail-modal-card {
+  background-color: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.15) !important;
+}
+
+.light #legal-document-modal h3,
+.light #legal-document-modal h4,
+.light #legal-document-modal p,
+.light #legal-document-modal li,
+.light #product-detail-modal-card h3,
+.light #product-detail-modal-card h4,
+.light #product-detail-modal-card p,
+.light #product-detail-modal-card li,
+.light #product-detail-modal-card span:not(.text-emerald-400):not(.text-blue-400):not(.text-purple-400) {
+  color: #1e293b !important;
+}
+
+.light #legal-document-modal border-t,
+.light #legal-document-modal border-b,
+.light #product-detail-modal-card .border-t,
+.light #product-detail-modal-card .border-b {
+  border-color: #e2e8f0 !important;
+}
+
+/* Badges / tag adjustments in light mode */
+.light .bg-emerald-500\/10 {
+  background-color: #ecfdf5 !important;
+  border-color: #a7f3d0 !important;
+  color: #047857 !important;
+}
+
+.light .bg-blue-500\/10 {
+  background-color: #eff6ff !important;
+  border-color: #bfdbfe !important;
+  color: #1d4ed8 !important;
+}
+
+/* Dark-preserving containers */
+.light .preserve-dark,
+.light .preserve-dark * {
+  color: #ffffff !important;
+}
+
+.light .preserve-dark .text-emerald-300 {
+  color: #6ee7b7 !important;
+}
+
+.light .preserve-dark .text-emerald-400 {
+  color: #34d399 !important;
+}
+
+/* High contrast modifications to semantic text highlights in light mode */
+.light .text-emerald-400:not(.preserve-dark *) {
+  color: #059669 !important; /* emerald-600 */
+}
+
+.light .text-emerald-300:not(.preserve-dark *) {
+  color: #047857 !important; /* emerald-700 */
+}
+
+.light .text-blue-400:not(.preserve-dark *) {
+  color: #1d4ed8 !important; /* blue-700 */
+}
+
+.light .text-purple-400:not(.preserve-dark *) {
+  color: #7c3aed !important; /* purple-600 */
+}
+
+.light .text-sky-400:not(.preserve-dark *) {
+  color: #0369a1 !important; /* sky-700 */
+}
+
+.light .text-amber-400:not(.preserve-dark *) {
+  color: #b45309 !important; /* amber-700 */
+}
+
+/* Theme toggle button inside light mode */
+.light #theme-toggle-desktop,
+.light #theme-toggle-mobile {
+  background-color: #f1f5f9 !important;
+  border-color: #cbd5e1 !important;
+  color: #475569 !important;
+}
+
+.light #theme-toggle-desktop:hover,
+.light #theme-toggle-mobile:hover {
+  background-color: #cbd5e1 !important;
+  color: #1e293b !important;
+}
+
+

@@ -20,7 +20,7 @@ export default function About() {
               className="relative p-5 bg-white/5 border border-white/10 rounded-2xl shadow-2xl w-full max-w-sm backdrop-blur-md"
             >
               {/* Profile Card Mock Frame */}
-              <div className="h-64 bg-[#0d1527] rounded-xl relative flex flex-col justify-end p-6 text-white overflow-hidden shadow-lg border border-white/5 group">
+              <div className="h-64 bg-[#0d1527] rounded-xl relative flex flex-col justify-end p-6 text-white overflow-hidden shadow-lg border border-white/5 group preserve-dark">
                 {/* Profile Image with Overlay */}
                 <img
                   src={swapnilPhoto}
