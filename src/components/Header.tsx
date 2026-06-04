@@ -11,6 +11,7 @@ interface HeaderProps {
 export default function Header({ theme, toggleTheme }: HeaderProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const mobileMenuCloseDuration = 220;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -35,37 +36,62 @@ export default function Header({ theme, toggleTheme }: HeaderProps) {
     { name: 'Contact', href: '#contact' },
   ];
 
-  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault();
-    setIsOpen(false);
-    if (href === '#' || href === '') {
+  const scrollToSection = (href: string) => {
+    const sectionId = href.replace('#', '');
+
+    if (!sectionId) {
       window.scrollTo({ top: 0, behavior: 'smooth' });
-    } else {
-      const targetElement = document.querySelector(href);
-      if (targetElement) {
-        targetElement.scrollIntoView({ behavior: 'smooth' });
-      }
+      window.history.replaceState(null, '', window.location.pathname + window.location.search);
+      return;
     }
+
+    const targetSection = document.getElementById(sectionId);
+    if (!targetSection) {
+      return;
+    }
+
+    const headerElement = document.getElementById('app-header');
+    const headerOffset = (headerElement?.offsetHeight ?? 0) + 12;
+    const targetTop = targetSection.getBoundingClientRect().top + window.scrollY - headerOffset;
+
+    window.scrollTo({
+      top: Math.max(targetTop, 0),
+      behavior: 'smooth',
+    });
+
+    window.history.replaceState(null, '', `#${sectionId}`);
+  };
+
+  const handleNavClick = (href: string, shouldCloseMenu = false) => {
+    if (!shouldCloseMenu) {
+      scrollToSection(href);
+      return;
+    }
+
+    setIsOpen(false);
+
+    window.setTimeout(() => {
+      scrollToSection(href);
+    }, mobileMenuCloseDuration);
   };
 
   const handleHomeClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     setIsOpen(false);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    scrollToSection('#');
   };
 
   return (
     <header
       id="app-header"
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? 'bg-[#0a0f1d]/85 backdrop-blur-xl border-b border-white/10 py-3 shadow-lg shadow-black/30'
-          : 'bg-[#070b14]/40 backdrop-blur-md py-5 border-b border-white/5'
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 overflow-visible transition-all duration-300 ${isScrolled
+        ? 'bg-[#0a0f1d]/85 backdrop-blur-xl border-b border-white/10 py-3 shadow-lg shadow-black/30'
+        : 'bg-[#070b14]/40 backdrop-blur-md py-5 border-b border-white/5'
+        }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center gap-4">
-          
+
           {/* Logo Brand (Clickable Redirection to Top) */}
           <button
             onClick={handleHomeClick}
@@ -89,15 +115,15 @@ export default function Header({ theme, toggleTheme }: HeaderProps) {
           {/* Desktop Navigation Links */}
           <nav aria-label="Main Navigation" className="hidden lg:flex items-center gap-4 xl:gap-6">
             {menuItems.map((item) => (
-              <a
+              <button
                 key={item.name}
-                href={item.href}
-                onClick={(e) => handleLinkClick(e, item.href)}
+                type="button"
+                onClick={() => handleNavClick(item.href)}
                 className="text-xs xl:text-sm font-semibold tracking-wide text-slate-300 hover:text-emerald-400 transition-colors uppercase py-1"
                 id={`nav-${item.name.toLowerCase().replace(/\s+/g, '-')}`}
               >
                 {item.name}
-              </a>
+              </button>
             ))}
           </nav>
 
@@ -124,20 +150,21 @@ export default function Header({ theme, toggleTheme }: HeaderProps) {
             >
               <Phone className="w-4 h-4 text-emerald-400" />
             </a>
-            <a
-              href="#contact"
-              onClick={(e) => handleLinkClick(e, '#contact')}
+            <button
+              type="button"
+              onClick={() => handleNavClick('#contact')}
               className="bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-xs xl:text-sm px-3.5 py-2 rounded-xl transition-all inline-flex items-center gap-1 shadow-lg shadow-emerald-500/20 hover:shadow-emerald-500/35"
               id="cta-nav-consultation"
             >
               <span>Consultation</span>
               <ArrowRight className="w-3.5 h-3.5" />
-            </a>
+            </button>
           </div>
 
           {/* Hamburger Menu button */}
           <div className="lg:hidden flex items-center gap-2">
             <button
+              type="button"
               onClick={toggleTheme}
               className="p-2 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 text-slate-300 hover:text-white transition-all cursor-pointer flex items-center justify-center focus:outline-none"
               title={theme === 'light' ? 'Switch to Dark Mode' : 'Switch to Light Mode'}
@@ -150,9 +177,12 @@ export default function Header({ theme, toggleTheme }: HeaderProps) {
               )}
             </button>
             <button
+              type="button"
               onClick={() => setIsOpen(!isOpen)}
               className="text-slate-300 hover:text-white focus:outline-none p-1.5 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10"
               aria-label="Toggle Menu"
+              aria-controls="mobile-drawer"
+              aria-expanded={isOpen}
               id="hamburger-btn"
             >
               {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -168,21 +198,21 @@ export default function Header({ theme, toggleTheme }: HeaderProps) {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.2 }}
-            className="lg:hidden border-t border-white/10 bg-[#0e1628]/95 backdrop-blur-xl overflow-hidden shadow-2xl"
+            transition={{ duration: 0.22 }}
+            className="lg:hidden z-50 border-t border-white/10 bg-[#0e1628]/95 backdrop-blur-xl overflow-hidden shadow-2xl"
             id="mobile-drawer"
           >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex flex-col gap-4">
               <div className="flex flex-col gap-1 py-1">
                 {menuItems.map((item) => (
-                  <a
+                  <button
                     key={item.name}
-                    href={item.href}
-                    onClick={(e) => handleLinkClick(e, item.href)}
+                    type="button"
+                    onClick={() => handleNavClick(item.href, true)}
                     className="text-base font-semibold text-slate-200 hover:text-emerald-400 transition-colors py-2 block border-b border-white/5"
                   >
                     {item.name}
-                  </a>
+                  </button>
                 ))}
               </div>
               <div className="flex flex-col gap-3 pt-2">
@@ -194,14 +224,14 @@ export default function Header({ theme, toggleTheme }: HeaderProps) {
                   <Phone className="w-4 h-4 text-emerald-400" />
                   <span className="font-mono">Call Now (+91 98336 74743)</span>
                 </a>
-                <a
-                  href="#contact"
-                  onClick={(e) => handleLinkClick(e, '#contact')}
+                <button
+                  type="button"
+                  onClick={() => handleNavClick('#contact', true)}
                   className="bg-emerald-500 text-white font-semibold text-center px-4 py-3 rounded-xl hover:bg-emerald-600 transition-colors shadow-lg shadow-emerald-500/20 block"
                   id="mobile-consultation-btn"
                 >
                   Get Free Consultation
-                </a>
+                </button>
               </div>
             </div>
           </motion.div>

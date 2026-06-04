@@ -5,7 +5,7 @@
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Outfit", sans-serif;
   --font-mono: "JetBrains Mono", monospace;
-  
+
   --color-brand-blue-50: #f8fafc;
   --color-brand-blue-100: #e2e8f0;
   --color-brand-blue-500: #3b82f6;
@@ -21,6 +21,16 @@ body {
   font-family: var(--font-sans);
   background-color: #0b0f19;
   color: #f1f5f9;
+}
+
+section[id] {
+  scroll-margin-top: 5rem;
+}
+
+@media (max-width: 1024px) {
+  section[id] {
+    scroll-margin-top: 4.5rem;
+  }
 }
 
 /* Frosted glass utilities */
@@ -42,13 +52,15 @@ body {
 
 .glass-card:hover {
   background: rgba(255, 255, 255, 0.07);
-  border-color: rgba(16, 185, 129, 0.3); /* Emerald border highlight on hover */
+  border-color: rgba(16, 185, 129, 0.3);
+  /* Emerald border highlight on hover */
   transform: translateY(-2px);
   box-shadow: 0 10px 30px -15px rgba(16, 185, 129, 0.15);
 }
 
 .glass-card-blue:hover {
-  border-color: rgba(59, 130, 246, 0.3); /* Blue border highlight */
+  border-color: rgba(59, 130, 246, 0.3);
+  /* Blue border highlight */
   box-shadow: 0 10px 30px -15px rgba(59, 130, 246, 0.15);
 }
 
@@ -80,17 +92,18 @@ body {
    ========================================================== */
 
 /* Root and Base */
-html.light, body.light {
+html.light,
+body.light {
   background-color: #f8fafc !important;
   color: #1e293b !important;
 }
 
 /* Base text color overrides for headings and high contrast elements in Light Mode */
-.light h1, 
-.light h2, 
-.light h3, 
-.light h4, 
-.light h5, 
+.light h1,
+.light h2,
+.light h3,
+.light h4,
+.light h5,
 .light h6 {
   color: #0f172a !important;
 }
@@ -106,23 +119,28 @@ html.light, body.light {
 }
 
 .light .text-slate-200:not(.preserve-dark *) {
-  color: #1e293b !important; /* slate-800 */
+  color: #1e293b !important;
+  /* slate-800 */
 }
 
 .light .text-slate-300:not(.preserve-dark *):not(.bg-emerald-500 *):not(.bg-emerald-600 *):not(.bg-blue-600 *) {
-  color: #334155 !important; /* slate-700 */
+  color: #334155 !important;
+  /* slate-700 */
 }
 
 .light .text-slate-350:not(.preserve-dark *) {
-  color: #334155 !important; /* slate-700 */
+  color: #334155 !important;
+  /* slate-700 */
 }
 
 .light .text-slate-400:not(.preserve-dark *):not(.bg-emerald-500 *):not(.bg-[#030712] *):not(#app-footer *) {
-  color: #475569 !important; /* slate-600 */
+  color: #475569 !important;
+  /* slate-600 */
 }
 
 .light .text-slate-500:not(.preserve-dark *) {
-  color: #64748b !important; /* slate-500 */
+  color: #64748b !important;
+  /* slate-500 */
 }
 
 /* Glass panel, cards layout overrides */
@@ -165,7 +183,8 @@ html.light, body.light {
 .light select,
 .light textarea {
   background-color: #ffffff !important;
-  border-color: #cbd5e1 !important; /* slate-300 */
+  border-color: #cbd5e1 !important;
+  /* slate-300 */
   color: #0f172a !important;
 }
 
@@ -185,7 +204,8 @@ html.light, body.light {
 
 .light input::placeholder,
 .light textarea::placeholder {
-  color: #94a3b8 !important; /* slate-400 */
+  color: #94a3b8 !important;
+  /* slate-400 */
 }
 
 /* Header navigation bar in light mode */
@@ -319,27 +339,33 @@ html.light, body.light {
 
 /* High contrast modifications to semantic text highlights in light mode */
 .light .text-emerald-400:not(.preserve-dark *) {
-  color: #059669 !important; /* emerald-600 */
+  color: #059669 !important;
+  /* emerald-600 */
 }
 
 .light .text-emerald-300:not(.preserve-dark *) {
-  color: #047857 !important; /* emerald-700 */
+  color: #047857 !important;
+  /* emerald-700 */
 }
 
 .light .text-blue-400:not(.preserve-dark *) {
-  color: #1d4ed8 !important; /* blue-700 */
+  color: #1d4ed8 !important;
+  /* blue-700 */
 }
 
 .light .text-purple-400:not(.preserve-dark *) {
-  color: #7c3aed !important; /* purple-600 */
+  color: #7c3aed !important;
+  /* purple-600 */
 }
 
 .light .text-sky-400:not(.preserve-dark *) {
-  color: #0369a1 !important; /* sky-700 */
+  color: #0369a1 !important;
+  /* sky-700 */
 }
 
 .light .text-amber-400:not(.preserve-dark *) {
-  color: #b45309 !important; /* amber-700 */
+  color: #b45309 !important;
+  /* amber-700 */
 }
 
 /* Theme toggle button inside light mode */
@@ -355,5 +381,3 @@ html.light, body.light {
   background-color: #cbd5e1 !important;
   color: #1e293b !important;
 }
-
-
